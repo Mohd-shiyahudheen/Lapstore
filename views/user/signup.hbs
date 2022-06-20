@@ -1,0 +1,87 @@
+
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+  </style>
+
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Sign up now</h2>
+            <form action="/signup" method="post" id="Signup">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" />
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last name" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" id="email"  name="email" class="form-control" placeholder="Email" />
+              </div>
+
+              {{!-- Phone number --}}
+              <div class="form-outline mb-4">
+                <input type="number"  name="phone" id="phone" class="form-control" placeholder="Phone Number" />
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password"  name="password" id="password" name="password" class="form-control" placeholder="Password" />
+              </div>
+
+               <!-- Password conform -->
+              <div class="form-outline mb-4">
+                <input type="password" name="cmpassword" id="cmpassword" class="form-control" placeholder="Confirm Passwoed" />
+              </div>
+
+              <!-- Submit button -->
+              <a href="">
+                   <button type="submit" class="btn btn-primary btn-block mb-4">
+                Sign up
+              </button>
+              </a>
+               <div class="text-center">
+              <p>Alredy have an account?</p>
+             <a href="/login">
+                 <button type="button" class="btn btn-link btn-floating mx-1 text-primary">Login</button>
+             </a> 
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4"
+          alt="" />
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+

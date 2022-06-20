@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <table id="userTable" class="display">
+            <thead>
+                <tr>
+                    <th>no</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Block</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <td>{{@index}}</td>
+                    <td>{{this.first_name}}</td>
+                    <td>{{this.last_name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>
+                        <div id="refresh" onClick="refreshPage()">
+                            <!-- <button type="button" onClick="refreshPage()">Close</button> -->
+
+                            {{#if block}}
+                            <a onclick="unBlockUser('{{this._id}}')" class="btn btn-danger btn-sm" role="button"
+                                data-bs-toggle="button" aria-pressed="true"><i class='bx bx-block fs-4'></i></i></a>
+                            {{!-- <a href="/admin/UnBlockuser/{{this._id}}" class="btn btn-primary">UnBlock</a>
+                            --}}
+                            {{else}}
+                            <a onclick="blockUser('{{this._id}}')" class="btn btn-success btn-sm" role="button"
+                                data-bs-toggle="button"><i class='bx bx-block fs-4'></i></a>
+                            {{!-- <a href="/admin/Blockuser/{{this._id}}" class="btn btn-danger ">Block</a> --}}
+                            {{/if}}
+                        </div>
+                        {{!-- <a href=""><i class='bx bx-block text-danger fs-3'></i></a> --}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('#userTable').DataTable();
+    }); 
+</script>
+
+<script>
+    function refreshPage() {
+        window.location.reload();
+    } 
+</script>
+
+{{!-- Block UnBlock --}}
+<script>
+    function unBlockUser(proId) {
+        $.ajax({
+            url: '/admin/unBlockUser/' + proId,
+            method: 'get',
+            success: (response) => {
+                if (response.status)
+                    alert("Do you want to Unblock")
+            }
+        })
+    }
+</script>
+<script>
+    function blockUser(proId) {
+        $.ajax({
+            url: '/admin/blockUser/' + proId,
+            method: 'get',
+            success: (response) => {
+                alert("Do you want to Block")
+            }
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Electro - HTML Ecommerce Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">Checkout</h3>
+					<ul class="breadcrumb-tree">
+						<li><a href="#">Home</a></li>
+						<li class="active">Checkout</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<form action="" method="post" id="checkout-form">
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Shipping address</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" value="{{shippingDt.first_name}}" name="first_name"
+									placeholder="First Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" value="{{shippingDt.last_name}}" name="last_name"
+									placeholder="Last Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="email" value="{{shippingDt.email}}" name="email"
+									placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" value="{{shippingDt.address}}" name="address"
+									placeholder="Address">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" value="{{shippingDt.country}}" name="country"
+									placeholder="Country">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" value="{{shippingDt.state}}" name="state"
+									placeholder="State">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" value="{{shippingDt.city}}" name="city"
+									placeholder="City">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" value="{{shippingDt.pincode}}" name="pincode"
+									placeholder="Pincode">
+							</div>
+							<div class="form-group">
+								<input class="input" type="tel" value="{{shippingDt.phone}}" name="phone"
+									placeholder="Telephone">
+							</div>
+							<input type="text" name="userId" value="{{user._id}}" hidden>
+
+						</div>
+						<!-- /Billing Details -->
+					</div>
+
+					<!-- Order Details -->
+					<div class="col-md-5 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Your Order</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div><strong>PRODUCT</strong></div>
+								<div><strong>TOTAL</strong></div>
+							</div>
+							<div class="order-products">
+								<div class="order-col">
+									{{#each cartProducts}}
+									{{#each this.cartItems}}
+									<div>{{this.products.productname}}</div>
+									{{/each}}
+									{{/each}}
+									<div>₹{{grandTotal.total_am}}</div>
+								</div>
+
+							</div>
+							<div class="order-col">
+								<div>Delivery Charge</div>
+								<div><strong>{{grandTotal.ship}}</strong></div>
+							</div>
+							<div class="order-col">
+								<div><strong>TOTAL</strong></div>
+								<div><strong class="order-total">₹{{grandTotal.total}}</strong></div>
+							</div>
+						</div>
+						<div class="payment-method">
+							<div>
+								<input type="radio" name="payment-method" value="online" checked>
+								<label for="payment-1">
+									<span></span>
+									Online Payment
+								</label>
+
+							</div>
+							<div class="">
+								<input type="radio" name="payment-method" value="COD" >
+								<label for="payment-2">
+									<span></span>
+									Cash on Delivery
+								</label>
+
+							</div>
+						</div>
+						<div class="input-checkbox">
+							<input type="checkbox" name="terms">
+							<label for="terms">
+								<span></span>
+								I've read and accept the <a href="#">terms & conditions</a>
+							</label>
+						</div>
+						<div class="mx-auto">
+								<button type="submit" value="" class="primary-btn order-submit">Order Placed</button>
+						</div>
+
+					</div>
+					<!-- /Order Details -->
+				</form>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+
+
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+
+</body>
+
+</html>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+	$('#checkout-form').submit((e) => {
+		e.preventDefault()
+		$.ajax({
+			url: '/checkout',
+			method: 'post',
+			data: $('#checkout-form').serialize(),
+			success: (response) => {
+				alert(response)
+				if(response.codSuccess){
+					location.href='/place-order'
+				}else{
+					 razorpayPayment(response)
+				}
+			}
+
+		})
+	})
+
+	 function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_wscu2FUCWn41mD", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Lap store",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                verifyPayment(response,order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "7907482697"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function verifyPayment(payment,order){
+        $.ajax({
+            url:'/verify-payment',
+            data:{
+                payment,
+                order
+            },
+            method:'post',
+            success:(response)=>{
+                if(response.status){
+                    location.href='/place-order'
+                }else{
+                    alert("payment failed")
+                }
+            }
+        })
+    }
+</script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <table id="productTable" class="display">
+            <thead>
+                <tr>
+                    <th>no</th>
+                    <th>Product Name</th>
+                    <th>Brand</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each Product}}
+                <tr>
+                    <td>{{@index}}</td>
+                    <td>{{this.productname}}</td>
+                    <td>{{this.brandname.brandname}}</td>
+                    <td>{{this.color}}</td>
+                    <td>{{this.price}}</td>
+                    <td>
+                        <img style="width: 50px;height: 50px;" src="/images/{{this.image.[0].first}}" alt="">
+                        <img style="width: 50px;height: 50px;" src="/images/{{this.image.[0].second}}" alt="">
+                    </td>
+                    <td>
+                        <a href="/vendor/edit-product/{{this._id}}"><i class='bx bxs-edit-alt fs-3'></i></a> 
+                        <a href="/vendor/delete-product/{{this._id}}" onclick="return confirm('Are sure want  to delete {{this.productname}}?')"><i class='bx bx-trash fs-3 ml-3 text-danger'></i></a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('#productTable').DataTable();
+    }); 
+</script>
+
+</html>

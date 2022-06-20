@@ -1,0 +1,201 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Electro - HTML Ecommerce Template</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="css/slick.css" />
+    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+ 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+ 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ 		<![endif]-->
+
+</head>
+
+<body>
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="breadcrumb-header">Your Cart</h3>
+                    <ul class="breadcrumb-tree">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="/cart-view">Cart</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+   
+        <div class="container">
+            <!-- Cart -->
+            <div class="col-lg-9 col-md-9 col-sm-12 mx-auto m">
+                <div class="col-lg-12 col-sm-12">
+                    <span class="title">SHOPPING CART</span>
+                </div>
+                <div class="col-lg-12 col-sm-12 hero-feature">
+                    <div class="table-responsive">
+                        <table class="table table-bordered tbl-cart">
+                            <thead>
+                                <tr>
+                                    <td class="hidden-xs">Image</td>
+                                    <td>Product Name</td>
+                                    <td>Color</td>
+                                    <td>Brand</td>
+                                    <td class="td-qty">Quantity</td>
+                                    <td>Sub Total</td>
+                                    <td>Remove</td>
+                                </tr>
+                            </thead>
+                            {{#each cartProducts}}
+                            {{#each this.cartItems}}
+                            <tbody>
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <a href="#">
+                                            <img src="/images/{{this.products.image.[0].first}}"
+                                                alt="Age Of Wisdom Tan Graphic Tee" title="" width="50" height="50">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <p href="#">{{this.products.productname}}</p>
+                                    </td>
+                                    <td>
+                                        <p href="#">{{this.products.color}}</p>
+                                    </td>
+                                    <td>
+                                        <p href="#">{{this.products.brandname.brandname}}</p>
+                                    </td>
+
+                                    <td>
+                                        <div class="input-group bootstrap-touchspin"><span
+                                                class="input-group-btn"><button
+                                                    class="btn btn-default bootstrap-touchspin-down" onclick="changeQuandity('{{this._id}}','{{this.products._id}}',-1)"
+                                                    type="button">-</button></span><span
+                                                class="input-group-addon bootstrap-touchspin-prefix"
+                                                style="display: none;"></span><input type="text" name="" value="{{this.quandity}}" id="{{this.products._id}}"
+                                                class="input-qty form-control text-center" style="display: block;"><span
+                                                class="input-group-addon bootstrap-touchspin-postfix"
+                                                style="display: none;"></span><span class="input-group-btn"><button
+                                                    class="btn btn-default bootstrap-touchspin-up" onclick="changeQuandity('{{this._id}}','{{this.products._id}}',1)"
+                                                    type="button">+</button></span></div>
+                                    </td>
+                                    <td class="price"><span id="price{{this.products._id}}">{{this.subtotal}}</span></td>
+                                    <td class="text-center">
+                                        <a href="/delete-cart/{{this.products._id}}" onclick="return confirm('Are you sure want to delete {{this.products.productname}} ?')" class="remove_cart" rel="2">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {{/each}}
+                            {{/each}}
+                            <tr>
+                                <td colspan="6" align="right">Total</td>
+                                <td class="total" colspan="2"><b>₹{{grandTotal.total_am}}</b>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="btn-group btns-cart">
+                        <a href="/">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i>
+                                Continue
+                                Shopping</button></a>
+                        <a href="/billing-address"><button type="button" class="btn btn-primary ml-3">Checkout
+                                <i class="fa fa-arrow-circle-right"></i></button></a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Cart -->
+        </div>
+       
+
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+
+   
+
+    <!-- jQuery Plugins -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
+
+
+<script>
+    function changeQuandity(cartId, proId, count) {
+        let price=parseInt(document.getElementById('price'+proId).value)
+        let quandity = parseInt(document.getElementById(proId).value);
+         count=parseInt(count)
+        $.ajax({
+            url: '/change-product-quandity',
+            data: {
+                cart: cartId,
+                products: proId,
+                count: count,
+                quandity:quandity
+            },
+            method: 'post',
+            success: (response) => {
+                if(response.removeProduct){
+                    alert('product removed from cart')
+                    location.reload()
+                }else{
+                    document.getElementById(proId).value=quandity+count
+                    location.reload()
+                }
+                
+            } 
+        })
+    }
+</script>

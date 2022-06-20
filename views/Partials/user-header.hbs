@@ -1,0 +1,103 @@
+<header>
+	<!-- MAIN HEADER -->
+	<div id="header">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- LOGO -->
+				<div class="col-md-3">
+					<div class="header-logo">
+						<a href="/" class="logo">
+							<h1 class="text-light mt-4">Lap Store</h1>
+						</a>
+					</div>
+				</div>
+				<!-- /LOGO -->
+
+				<!-- SEARCH BAR -->
+				<div class="col-md-6 col-sm-12">
+					<div class="header-search">
+						<form class="search" action="/search" method="post">
+							<select class="input-select">
+								<option value="0">All Categories</option>
+								{{#each brands}}
+								<a href="/find-brand{{this._id}}">
+									<option value="{{this.brandname}}">{{this.brandname}}</option>
+								</a>
+								{{/each}}
+							</select>
+							<input class="input" type="text" name="search_name" placeholder="Search here">
+							<button type="submit" class="search-btn">Search</button>
+						</form>
+					</div>
+				</div>
+				<!-- /SEARCH BAR -->
+
+				<!-- ACCOUNT -->
+				<div class="col-md-3 col-sm-4 clearfix">
+					<div class="header-ctn">
+						<!-- Wishlist -->
+						<div>
+							<a href="/wish-list">
+								<i class="fa fa-heart-o"></i>
+								<span>Your Wishlist</span>
+								{{#if wishCount}}
+								<div class="qty">{{wishCount}}</div>
+								{{/if}}
+							</a>
+						</div>
+						<!-- /Wishlist -->
+
+						<!-- Cart -->
+						<div>
+							<a href="/cart-view">
+								<i class="fa fa-shopping-cart"></i>
+								<span>Your Cart</span>
+								{{#if cartCount}}
+								<div class="qty" id="cart-count">{{cartCount}}</div>
+								{{/if}}
+							</a>
+						</div>
+						<!-- /Cart -->
+						<!-- Menu Toogle -->
+						{{!-- <div class="menu-toggle">
+							<a href="">
+								<i class="fa fa-bars"></i>
+								<span>Menu</span>
+							</a>
+						</div> --}}
+						<!-- /Menu Toogle -->
+					</div>
+				</div>
+				<!-- /ACCOUNT -->
+			</div>
+			<!-- row -->
+		</div>
+		<!-- container -->
+	</div>
+	<!-- /MAIN HEADER -->
+	<!-- TOP HEADER -->
+	<div id="top-header">
+		<div class="container">
+			<ul class="header-links pull-left">
+				<li><a href="#"><i class="fa fa-phone"></i> +91 9526602414</a></li>
+				<li><a href="#"><i class="fa fa-envelope-o"></i> lapstore@gmail.com</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i> Kerala,Malappuram</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+				{{#if userName}}
+				<li><a href="/display-order"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Your-orders</a></li>
+				<li><a href="/user-profile"><i class="fa fa-user-o"></i>{{userName}}</a></li>
+				<li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+				{{else}}
+				<li><a href="/vendor/login"><i class="fa fa-user-o"></i>Become a seller</li>
+				<li><a href="/login"><i class="fa fa-user-o"></i>Login</a></li>
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+	<!-- /TOP HEADER -->
+</header>
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+    <div class="container ">
+        <table id="pendingTable" class="display  table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">Shipped</th>
+                    <th scope="col">Delvered</th>
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each showDt}}
+                <tr>
+                    <td><span style="font-size:small">{{this.OrderPlacedAt}}</span></td>
+                    <td><span style="font-size:small">{{this.address}},{{this.pincode}},{{this.city}}</span></td>
+                    <td><span style="font-size:small">{{this.OrderStatus}}</span></td>
+                    <td><span style="font-size:small">{{this.paymentMethod}}</span></td>
+                    <td><span style="font-size:small">{{this.phone}}</span></td>
+                    <td><span style="font-size:small">₹{{this.totalAmount}}</span></td>
+                    {{#each this.productDt}}
+                    <td>
+                        <img style="width: 60px; height:60px" src="/images/{{this.image.[0].first}}" alt="">
+                    </td>
+                    {{/each}}
+                    <td>
+                        <a href="/admin/order-shipped{{this._id}}"><i class='bx bxs-bus-school fs-3'></i></a>                        
+                    </td>
+                    <td>
+                        <a href="/admin/order-delivered{{this._id}}"><i class='bx bxs-package fs-3'></i></a>
+                    </td>
+                </tr>
+
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('#pendingTable').DataTable();
+    }); 
+</script>
+
+</html>

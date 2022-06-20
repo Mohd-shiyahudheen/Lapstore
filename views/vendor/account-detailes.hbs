@@ -1,0 +1,31 @@
+<div class="container rounded  mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-5 border-right border-left border-top border-bottom mx-auto">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile</h4>
+                </div>
+                {{#each vendor}}
+                {{#if this.name}}
+                <form action="/vendor/account-detailes/{{this._id}}" method="post">
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Name</label><input type="text" name="name" class="form-control"
+                                value="{{this.name}}"></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" name="email"
+                                class="form-control" value="{{this.email}}"></div>
+                        <div class="col-md-12"><label class="labels">Phone Number</label><input type="text" name="phone"
+                                class="form-control" value="{{this.phone}}"></div>
+                        <div class="col-md-12"><label class="labels">Location</label><input type="text" name="location"
+                                class="form-control" value="{{this.location}}"></div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save
+                            Profile</button></div>
+                </form>
+                {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

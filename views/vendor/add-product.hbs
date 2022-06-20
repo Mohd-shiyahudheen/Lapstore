@@ -1,0 +1,90 @@
+<section class="vh">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-2">Add Products</p>
+
+                                <form class="mx-1 mx-md-4" action="/vendor/add-product" id="addproduct" method="post"
+                                    enctype="multipart/form-data">
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example1c">product Name</label>
+                                            <input type="text" name="productname" id="productname"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class=" mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Brands</label>
+                                        <select name="brandname" class="form-control">
+                                            <option value="" selected>Select brand</option>
+                                            {{#each brands}}
+
+                                            <option value="{{this.brandname}}">{{this.brandname}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4c">Color</label>
+                                            <input type="text" name="color" id="color" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4cd">price</label>
+                                            <input type="number" name="price" id="price" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4cd">oldprice</label>
+                                            <input type="number" name="oldprice" id="oldprice" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4cd">Description</label>
+                                            <input type="text" name="description" id="description" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4cd">image</label>
+                                            <input type="file" name="image1" id="image" class="form-control" multiple accept="image/*"/>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example4cd">image</label>
+                                            <input type="file" name="image2" id="image" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">Add</button>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

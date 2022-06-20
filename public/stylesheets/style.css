@@ -1,0 +1,18 @@
+.bg-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+
+.row1 {
+    width: 120px;
+}
+
+.valid {
+    font-size: 14px;
+    color: red;
+}
+
+
+

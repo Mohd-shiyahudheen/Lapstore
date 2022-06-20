@@ -1,0 +1,56 @@
+
+body {
+    background-color: rgb(241, 234, 234);
+}
+
+.cart {
+    height: 80vh
+}
+
+.progresses {
+    display: flex;
+    align-items: center
+}
+
+.line {
+    width: 76px;
+    height: 6px;
+    background: #63d19e
+}
+
+.steps {
+    display: flex;
+    background-color: #63d19e;
+    color: #fff;
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%
+}
+
+.check1 {
+    display: flex;
+    background-color: #63d19e;
+    color: #fff;
+    font-size: 17px;
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 10px
+}
+
+.invoice-link {
+    font-size: 15px
+}
+
+.order-button {
+    height: 50px
+}
+
+.background-muted {
+    background-color: #fafafc
+}
