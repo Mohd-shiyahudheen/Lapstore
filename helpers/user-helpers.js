@@ -164,7 +164,6 @@ const sendPasswordResetMail = async (name, email, otpGenerator) => {
       to: email,
       subject: "Reset Password",
       text: 'Your otp code is ' + otpGenerator
-
     }
     mailTransporter.sendMail(mailDetails, (err, Info) => {
       if (err) {
@@ -305,7 +304,7 @@ const changeProductQuandity = (details) => {
       Addcart.updateOne({ 'cartItems._id': details.cart },
         {
           $pull: { cartItems: { products: details.products } }
-        }).then( (response) => {
+        }).then((response) => {
           resolve({ removeProduct: true })
         })
     } else {
@@ -328,7 +327,6 @@ const changeProductQuandity = (details) => {
 const getTotalAmount = (userId) => {
   return new Promise(async (resolve, reject) => {
     let id = mongoose.Types.ObjectId(userId);
-
     let cart = await Addcart.aggregate([
       {
         $match: { user: id }
@@ -343,13 +341,9 @@ const getTotalAmount = (userId) => {
         }
       }
     ])
-    console.log(cart);
     const carts = await Addcart.findOne({ user: userId })
-    console.log("gfhfdffdh");
-    console.log(carts);
     if (carts) {
       cart.forEach(async (amt) => {
-        console.log(amt);
         await Addcart.updateMany({ 'cartItems.products': amt.Id }, { $set: { 'cartItems.$.subtotal': amt.total } })
       })
     }
@@ -360,10 +354,8 @@ const getTotalAmount = (userId) => {
 //calculate grand total amount//
 
 const getGrandTotal = (userId) => {
-  console.log(userId);
   return new Promise(async (resolve, reject) => {
     cart = await Addcart.findOne({ user: userId })
-    console.log(cart);
     let id = mongoose.Types.ObjectId(userId)
     if (cart) {
       let totalAmount = await Addcart.aggregate([
@@ -400,15 +392,14 @@ const getGrandTotal = (userId) => {
           }
         }
       ])
-      console.log(totalAmount);
+
       if (totalAmount == null) {
         resolve({ status: true })
-          } else {
+      } else {
         let grandTotal = totalAmount.pop();
         await Addcart.findOneAndUpdate({ user: userId }, { $set: { total: grandTotal.total, total_a: grandTotal.total_am } })
         //    resolve({status:true})
         resolve(grandTotal)
-        console.log("%j", grandTotal);
       }
     }
     else {
@@ -449,6 +440,7 @@ const getCartProductList = (userId) => {
 
   })
 }
+
 //get order details//
 const getUserOrders = (userId) => {
   return new Promise(async (resolve) => {
@@ -475,14 +467,12 @@ const getCartCount = (userId) => {
     if (cart) {
       count = cart.cartItems.length
     }
-    console.log(count);
     resolve(count)
   })
 }
 //Delete cart Product//
 const deleteCart = (proId) => {
   return new Promise((resolve, reject) => {
-    console.log(proId);
     Addcart.updateOne({ 'cartItems.products': proId }, {
       $pull: { cartItems: { products: proId } }
     }).then((r) => {
@@ -667,12 +657,8 @@ const placeOrder = (order, products, total) => {
 
 //get grandTotal//
 const getOrderTotal = (userId) => {
-  console.log("wwwwwwwwwww");
-  console.log(userId);
   return new Promise(async (resolve, reject) => {
     let grandtotal = await Addcart.findOne({ user: userId })
-    console.log("222333");
-    console.log(grandtotal);
     resolve(grandtotal.total)
 
   })
@@ -753,13 +739,13 @@ const Offer = () => {
 //cancelorder
 const cancelOrder = (orderId) => {
   return new Promise(async (resolve, reject) => {
-      const cancel = await Orders.updateOne({ _id: orderId }, {
-          $set: {
-            orderCancelled: true,
-            OrderStatus: 'cancelled'
-          }
-      })
-      resolve(cancel)
+    const cancel = await Orders.updateOne({ _id: orderId }, {
+      $set: {
+        orderCancelled: true,
+        OrderStatus: 'cancelled'
+      }
+    })
+    resolve(cancel)
   })
 }
 
