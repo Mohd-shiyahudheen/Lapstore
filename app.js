@@ -52,7 +52,7 @@ mongoose.connect('mongodb://localhost:27017/Lapstore');
 db.on('error', console.error.bind(console, 'connection error'));
 
 db.once('open', () => {
-  console.log('Connection Successfully');
+  console.log('DB-Connected Successfully');
 });
 
 app.use('/admin', adminRouter);

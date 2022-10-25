@@ -142,7 +142,6 @@ const getproductdetail = (proId) => {
 
 // /---------------for reset password send mail------------------/
 
-// const sendPasswordResetMail = async (name, email, tocken) => {
 const sendPasswordResetMail = async (name, email, otpGenerator) => {
   try {
     const mailTransporter = nodemailer.createTransport({
@@ -165,8 +164,7 @@ const sendPasswordResetMail = async (name, email, otpGenerator) => {
       to: email,
       subject: "Reset Password",
       text: 'Your otp code is ' + otpGenerator
-      // text: "just random texts ",
-      // html: '<p>Hi ' + name + ' click <a href ="http://localhost:3000/users/reset_password?tocken=' + tocken + '"> here to </a> to reset your password</p>'
+
     }
     mailTransporter.sendMail(mailDetails, (err, Info) => {
       if (err) {
@@ -203,16 +201,11 @@ const forgetPasswordEmailVerify = async (req, res) => {
     console.log(userResetData);
     req.session.userResetid = userResetData._id;
     if (userResetData) {
-      // const validRandomString=randomstring.generate();
-      // req.session.randomString = validRandomString;
-
       const otpGenerator = Math.floor(1000 + Math.random() * 9000);
       console.log(otpGenerator)
       req.session.OTP = otpGenerator;
-      // sendPasswordResetMail(userResetData.name,userResetData.email,validRandomString); 
       sendPasswordResetMail(userResetData.name, userResetData.email, otpGenerator);
       req.session.checkMailMsg = "Check your Email to reset your password"
-      //res.redirect("/forget_password")
       res.redirect('/enter-otp')
 
     }
@@ -230,8 +223,6 @@ const forgetPasswordEmailVerify = async (req, res) => {
 const forgetPasswordOTP = async (req, res) => {
   let userOTP = req.body.otp
   let userNewOTP = req.session.OTP
-  //let userDetails=req.session.userDetails
-  // console.log(userDetails)
   try {
     if (userNewOTP == userOTP) {
       req.session.OTP = null
@@ -259,7 +250,6 @@ const updateNewPassword = async (req, res) => {
     const newSecurePassword = await securePassword(newPassword);
     const updatedUserData = await userModel.findByIdAndUpdate({ _id: resetId }, { $set: { password: newSecurePassword } })
     console.log(updatedUserData)
-    //req.session.randomString = null;
     req.session.userResetid = null;
     req.session.resetSuccessMsg = "Your password updated successfully.."
     res.redirect("/login")
@@ -312,7 +302,6 @@ const changeProductQuandity = (details) => {
   let quandity = parseInt(details.quandity)
   return new Promise((resolve, reject) => {
     if (count == -1 && quandity == 1) {
-
       Addcart.updateOne({ 'cartItems._id': details.cart },
         {
           $pull: { cartItems: { products: details.products } }
@@ -337,7 +326,6 @@ const changeProductQuandity = (details) => {
 
 
 const getTotalAmount = (userId) => {
-  // console.log("total amtt");
   return new Promise(async (resolve, reject) => {
     let id = mongoose.Types.ObjectId(userId);
 
@@ -417,8 +405,6 @@ const getGrandTotal = (userId) => {
         resolve({ status: true })
           } else {
         let grandTotal = totalAmount.pop();
-        console.log("fgfhfgfhfgfhfgfhfgfhf");
-        console.log("%j", grandTotal)
         await Addcart.findOneAndUpdate({ user: userId }, { $set: { total: grandTotal.total, total_a: grandTotal.total_am } })
         //    resolve({status:true})
         resolve(grandTotal)
