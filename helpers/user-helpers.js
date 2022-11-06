@@ -721,8 +721,9 @@ const getAllBrand = (user) => {
 const displaySubCat = (catId) => {
   console.log(catId);
   return new Promise(async (resolve, reject) => {
-    let displaysub = await Product.find({ brandname: catId }).lean()
-    // let prod=await Products.find({subcategoryname:displaysub}).lean()
+    let displaysub = await Product.find({ brandname: catId }).populate('brandname').lean()
+    console.log("hihihihih");
+    console.log(displaysub);
     resolve(displaysub)
   })
 }
